@@ -86,7 +86,7 @@ var main = new Vue({
 
             for (let message of json.data) {
                 const autor = message.autor;
-                message.date = this.parseDate(message.date);
+                message.date = this.parseDate(new Date(message.date));
 
                 let putMessage = false;
 
