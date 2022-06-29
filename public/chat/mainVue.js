@@ -150,7 +150,7 @@ var main = new Vue({
             }
         },
         parseDate: function (date){
-            return date.toLocaleTimeString();
+            return date.toLocaleTimeString("de-DE");
         }
     }
 });
