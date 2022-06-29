@@ -150,7 +150,7 @@ var main = new Vue({
             }
         },
         parseDate: function (date){
-            return new Intl.DateTimeFormat('en-GB', {dateStyle: 'short', timeStyle: 'short'}).format(date)
+            return date.toLocaleTimeString();
         }
     }
 });

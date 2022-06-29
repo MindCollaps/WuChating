@@ -6,7 +6,7 @@ var main = new Vue({
         error: ""
     },
     methods: {
-        register: async function (){
+        registerNew: async function (){
             const options = {
                 method: 'POST',
                 headers: {
