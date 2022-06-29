@@ -92,14 +92,14 @@ var main = new Vue({
 
                 for (let chat of this.chats) {
                     if (chat.autor == autor) {
-                        chat.messages.push(message);
+                        chat.messages.unshift(message);
                         putMessage = true;
                         break;
                     }
                 }
 
                 if (!putMessage) {
-                    this.chats.unshift({
+                    this.chats.push({
                         autor: message.autor,
                         username: "Unknown",
                         messages: [message]
