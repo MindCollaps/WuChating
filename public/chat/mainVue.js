@@ -2,7 +2,7 @@ var main = new Vue({
     el: "#index",
     data: {
         chats: [],
-        selectedChat: {
+        demo: {
             autor: "Select or create a chat",
             messages: [{message: "To start chatting", date: "20:20", self: false}, {
                 message: "Share your User ID",
@@ -11,11 +11,13 @@ var main = new Vue({
             }],
             demo: true
         },
+        selectedChat: undefined,
         text: "",
         userID: "",
         sending: false
     },
     created: async function () {
+        this.selectedChat = this.demo;
         this.fetchOwnUserId();
         this.fetchMessages();
 
@@ -135,7 +137,7 @@ var main = new Vue({
             this.selectedChat = chat;
         },
         sendMessage: async function () {
-            if(this.sending)
+            if (this.sending)
                 return;
 
             this.sending = true;
@@ -173,8 +175,8 @@ var main = new Vue({
         parseDate: function (date) {
             return date.toLocaleTimeString("de-DE");
         },
-        back: function (){
-            this.selectedChat = null;
+        back: function () {
+            this.selectedChat = this.demo;
             this.text = "";
         }
     }
