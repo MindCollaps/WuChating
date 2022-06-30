@@ -13,32 +13,38 @@
 <!--Jup, this site is handwritten lol-->
 <body>
 <script>auth(true)</script>
-<div id="index" class="center">
-    <div class="chatwindow">
-        <div class="chatside">
+<div class="windowcenter">
+    <div id="index" class="chatwindow">
+        <div :class="selectedChat == undefined || selectedChat.demo ? 'chatside' : 'chatside chatHidden'">
             <div class="chatsbar">
                 <div>
                     Your User ID is: {{userID}}
                 </div>
-                <div :class="chat == selectedChat ? 'chat selectedChat' : 'chat'" v-for="chat of chats" @click="selectChat(chat)">
-                    <div class="name">{{chat.autor}}</div><div class="lastmsg" v-if="chat.messages.length == 0">Empy</div><div class="lastmsg" v-if="chat.messages.length != 0">{{chat.messages[0].message}}</div>
+                <div :class="chat == selectedChat ? 'chat selectedChat' : 'chat'" v-for="chat of chats"
+                     @click="selectChat(chat)">
+                    <div class="name">{{chat.autor}}</div>
+                    <div class="lastmsg" v-if="chat.messages.length == 0">Empy</div>
+                    <div class="lastmsg" v-if="chat.messages.length != 0">{{chat.messages[0].message}}</div>
                 </div>
                 <button @click="addChat()">Add chat</button>
             </div>
         </div>
-        <div class="chattingwindow">
+        <div :class="selectedChat != undefined && !selectedChat.demo ? 'chattingwindow' : 'chattingwindow chatHidden'">
+            <button class="fixedBtn denyBtn chatBackButton" @click="back">Back</button>
             <div class="chatmessagewindow">
                 <div :class="message.self ? 'message msg' : 'messageself msg'" v-for="message of selectedChat.messages">
-                    <div class="content">{{message.message}}</div> <div class="date">{{message.date}}</div>
+                    <div class="content">{{message.message}}</div>
+                    <div class="date">{{message.date}}</div>
                 </div>
             </div>
             <div class="chatmessagewindowbottombar">
                 <div style="width: 82%; margin-top: 1rem;" class="form__group field">
-                    <input v-model="text" type="text" class="form__field" placeholder="Type a message" name="Type a message"
+                    <input v-model="text" v-bind="text" type="text" class="form__field" placeholder="Type a message"
+                           name="Type a message"
                            id='message' required/>
                     <label for="message" class="form__label">Type a message</label>
                 </div>
-                <button @click="sendMessage()">Send</button>
+                <button class="sendChatButton" @click="sendMessage()">Send</button>
             </div>
         </div>
     </div>

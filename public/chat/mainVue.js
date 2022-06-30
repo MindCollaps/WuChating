@@ -4,10 +4,16 @@ var main = new Vue({
         chats: [],
         selectedChat: {
             autor: "Select or create a chat",
-            messages: [{message: "To start chatting", date: "20:20", self: false}, {message: "Share your User ID", date: "20:20", self: true}]
+            messages: [{message: "To start chatting", date: "20:20", self: false}, {
+                message: "Share your User ID",
+                date: "20:20",
+                self: true
+            }],
+            demo: true
         },
         text: "",
-        userID: ""
+        userID: "",
+        sending: false
     },
     created: async function () {
         this.fetchOwnUserId();
@@ -19,7 +25,7 @@ var main = new Vue({
 
     },
     methods: {
-        fetchOwnUserId: async function (){
+        fetchOwnUserId: async function () {
             const options = {
                 method: 'GET',
                 headers: {
@@ -36,7 +42,7 @@ var main = new Vue({
                 })
                 .catch(err => console.log(err));
 
-            if(json.status == 200){
+            if (json.status == 200) {
                 this.userID = json.data.userID;
             }
         },
@@ -59,8 +65,8 @@ var main = new Vue({
                     return res;
                 })
                 .catch(err => console.log(err));
-            if(json.status== 200){
-                if(json.data == true)
+            if (json.status == 200) {
+                if (json.data == true)
                     return true;
                 else return false;
             } else {
@@ -109,18 +115,30 @@ var main = new Vue({
         },
         addChat: function () {
             let userID = prompt("Enter a user ID");
-            if(userID == this.userID)
+
+            if (userID == this.userID)
                 return;
-            if(this.checkUserId(userID)){
+            if (userID == undefined) {
+                alert("A user ID has at least 4 characters!");
+            }
+            if (userID.length != 4) {
+                alert("A user ID has at least 4 characters!");
+                return;
+            }
+            if (this.checkUserId(userID)) {
                 this.chats.push({autor: userID, messages: []})
             } else {
-                window.info("This ID is invalid!");
+                alert("This ID is invalid!");
             }
         },
         selectChat: function (chat) {
             this.selectedChat = chat;
         },
         sendMessage: async function () {
+            if(this.sending)
+                return;
+
+            this.sending = true;
             const tMessage = {
                 message: this.text,
                 dest: this.selectedChat.autor,
@@ -143,14 +161,21 @@ var main = new Vue({
                 })
                 .catch(err => console.log(err));
 
-            if(json.status == 200){
+            if (json.status == 200) {
+                this.text = "";
                 tMessage.self = true;
                 tMessage.date = this.parseDate(tMessage.date);
                 this.selectedChat.messages.unshift(tMessage);
             }
+
+            this.sending = false;
         },
-        parseDate: function (date){
+        parseDate: function (date) {
             return date.toLocaleTimeString("de-DE");
+        },
+        back: function (){
+            this.selectedChat = null;
+            this.text = "";
         }
     }
 });

@@ -29,18 +29,6 @@ async function auth(goToLoginOnFail) {
         if (json.status === 200) {
             loggedIn = true;
             console.log("logged in!");
-            var login = document.getElementById('login');
-            var regi = document.getElementById('regi');
-            regi.remove();
-            login.innerHTML = "Logout";
-            login.href = "";
-            login.onclick = function () {
-                deleteCookie("auth");
-                if (goToLoginOnFail) {
-                    window.location.replace("/");
-                }
-            }
-            await setupLogin();
         } else {
             console.log("not logged in!");
             if (goToLoginOnFail) {
