@@ -35,8 +35,7 @@
             <button class="fixedBtn denyBtn chatBackButton" @click="back">Back</button>
             <div class="chatmessagewindow">
                 <div :class="message.self ? 'message msg' : 'messageself msg'" v-for="message of selectedChat.messages">
-                    <div class="content">{{message.message}}</div>
-                    <div class="date">{{message.date}}</div>
+                    <div class="content">{{message.message}}<div class="date">{{message.date}}</div></div>
                 </div>
             </div>
             <div class="chatmessagewindowbottombar" v-if="!selectedChat.demo">

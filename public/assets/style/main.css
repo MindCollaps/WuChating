@@ -201,6 +201,7 @@ body {
     padding: 1rem;
     overflow: scroll;
     overflow-x: hidden;
+    gap: 1rem;
 }
 
 .chatmessagewindowbottombar{
@@ -227,16 +228,9 @@ body {
 }
 
 .date {
-    bottom: -1.2rem;
+    bottom: -0.3rem;
     position: relative;
     font-size: 1.3vmin;
-}
-
-.message .date {
-}
-
-.messageself .date {
-    left: -98%;
 }
 
 .message{
@@ -709,6 +703,10 @@ img {
 
     .chatHidden {
         display: none;
+    }
+
+    .messageself{
+        margin-left: 0.1rem;
     }
 
     .advice {
