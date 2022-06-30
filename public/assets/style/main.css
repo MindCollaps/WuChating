@@ -161,6 +161,7 @@ body {
 }
 
 .chat .lastmsg{
+    font-size: 1rem;
     text-align: left;
     margin-left: 2rem;
     color: var(--color-font-highlight);
@@ -216,21 +217,38 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: fit-content;
 }
 
-.msg .date {
-    margin-left: 0.3rem;
-    align-self: flex-end;
+.msg .content{
+    width: 95%;
+    height: fit-content;
+    overflow-wrap: break-word;
+}
+
+.date {
+    bottom: -1.2rem;
+    position: relative;
     font-size: 1.3vmin;
 }
 
+.message .date {
+}
+
+.messageself .date {
+    left: -98%;
+}
+
 .message{
+    text-align: right;
     justify-content: right;
     justify-self: right;
 }
 
 .messageself{
+    margin-left: 1rem;
     width: 98%;
+    text-align: left;
     justify-content: left;
     justify-self: left;
 }

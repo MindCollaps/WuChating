@@ -178,6 +178,13 @@ var main = new Vue({
         back: function () {
             this.selectedChat = this.demo;
             this.text = "";
+        },
+        getLastMessage: function (txt){
+            if(txt.length > 40){
+                return txt.slice(0, 40) + "...";
+            } else {
+                return txt;
+            }
         }
     }
 });

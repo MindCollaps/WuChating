@@ -26,7 +26,7 @@
                      @click="selectChat(chat)">
                     <div class="name">{{chat.autor}}</div>
                     <div class="lastmsg" v-if="chat.messages.length == 0">Empy</div>
-                    <div class="lastmsg" v-if="chat.messages.length != 0">{{chat.messages[0].message}}</div>
+                    <div class="lastmsg" v-if="chat.messages.length != 0">{{getLastMessage(chat.messages[0].message)}}</div>
                 </div>
                 <button @click="addChat()">Add chat</button>
             </div>
