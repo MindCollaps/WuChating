@@ -9,6 +9,8 @@
     <meta name="title" content="Weebskingdom.com Homepage">
     <meta name="description" content="Here you can login">
     <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 <!--Jup, this site is handwritten lol-->
 <body>
@@ -37,11 +39,11 @@
                     <div class="date">{{message.date}}</div>
                 </div>
             </div>
-            <div class="chatmessagewindowbottombar">
+            <div class="chatmessagewindowbottombar" v-if="!selectedChat.demo">
                 <div style="width: 82%; margin-top: 1rem;" class="form__group field">
                     <input v-model="text" v-bind="text" type="text" class="form__field" placeholder="Type a message"
                            name="Type a message"
-                           id='message' required/>
+                           id='message' v-on:keyup.enter="sendMessage()"/>
                     <label for="message" class="form__label">Type a message</label>
                 </div>
                 <button class="sendChatButton" @click="sendMessage()">Send</button>

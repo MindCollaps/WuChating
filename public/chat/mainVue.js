@@ -21,7 +21,7 @@ var main = new Vue({
 
         setInterval(() => {
             this.fetchMessages();
-        }, 3000)
+        }, 1000)
 
     },
     methods: {
@@ -113,7 +113,7 @@ var main = new Vue({
                 }
             }
         },
-        addChat: function () {
+        addChat: async function () {
             let userID = prompt("Enter a user ID");
 
             if (userID == this.userID)
@@ -125,7 +125,7 @@ var main = new Vue({
                 alert("A user ID has at least 4 characters!");
                 return;
             }
-            if (this.checkUserId(userID)) {
+            if (await this.checkUserId(userID)) {
                 this.chats.push({autor: userID, messages: []})
             } else {
                 alert("This ID is invalid!");
