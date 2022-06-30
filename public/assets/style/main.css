@@ -640,6 +640,10 @@ img {
     font-size: 1.5vmax !important;
 }
 
+.chatBackButton {
+    display: none;
+}
+
 @-moz-document url-prefix() {
     .advice {
         width: -moz-fit-content;
